@@ -84,9 +84,9 @@ ModifierBanqueModule = (function(){
         $.get( serverUrl, function( data ) {
             console.log( "Data Loaded: ", data );
             console.log("data size ", data.length);
-            $( "input[name=banque]").val(data.banque);
-            $( "input[name=bic]").val(data.bic);
-            $( "input[name=ban]").val(data.ban);
+            $( "input[name=banque]").val(data.Banque);
+            $( "input[name=bic]").val(data.Bic);
+            $( "input[name=ban]").val(data.Ban);
         }).fail(function() {
             console.log( "error get" );
         });
