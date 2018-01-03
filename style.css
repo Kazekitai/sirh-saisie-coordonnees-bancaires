@@ -27,9 +27,9 @@ thead {
 }
 
 .modif-btn {
-	width: 100%;
-	padding: 5%;
+	/*width: 10%;*/
 }
+
 
 .panel-info>.panel-heading {
     color: white;
@@ -53,4 +53,20 @@ thead {
     color: #fff;
     background-color: black;
     border-color: dimgrey;
+}
+
+.col-md-12 {
+    width: 60%;
+    text-align: center;
+
+}
+
+th {
+    text-align: center;
+}
+
+.tableau {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

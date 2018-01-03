@@ -64,13 +64,27 @@ var CollaborateursModule = (function(){
     return self;
 })();
 
+
 ModifierBanqueModule = (function(){
     var self = {};
+    var serverUrl = "http://localhost:8080/api/collaborateurs/";;
 
     //methodes publiques
 
     self.modifier =  function() {
-        getCollaborateursFromAPI();
+        var matricule = $( "input[name=matricule]").val();
+        var collab = {
+            banque: $( "input[name=banque]").val(),
+            bic: $( "input[name=bin]").val(),
+            ban: $( "input[name=ban]").val(),
+        };
+        console.log( "matricule: " +  matricule);
+        $.ajax({ 
+            type: 'PUT', 
+            url: serverUrl + matricule + "/banque",
+            data: collab,
+            dataType: 'json' 
+        }); 
     };
 
 
@@ -78,15 +92,15 @@ ModifierBanqueModule = (function(){
         event.preventDefault();
         $('#updatebox').show();
         console.log( "pass " );
-        var matricule = $(event.target).data("matricule");
         var listeCollaborateursHtml ="";
-        var serverUrl = "http://localhost:8080/api/collaborateurs/" + matricule + "/banque";
-        $.get( serverUrl, function( data ) {
+        var matricule = $(event.target).data("matricule");
+        $.get( serverUrl + matricule + "/banque", function( data ) {
             console.log( "Data Loaded: ", data );
             console.log("data size ", data.length);
-            $( "input[name=banque]").val(data.Banque);
-            $( "input[name=bic]").val(data.Bic);
-            $( "input[name=ban]").val(data.Ban);
+            $( "input[name=matricule]").val(matricule);
+            $( "input[name=banque]").val(data.banque);
+            $( "input[name=bic]").val(data.bic);
+            $( "input[name=ban]").val(data.ban);
         }).fail(function() {
             console.log( "error get" );
         });

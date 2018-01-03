@@ -41,7 +41,7 @@
 								<div class="col-md-9">
 									<div class="input-group">
 
-										<select id="choixDept" name="choixDept" class="form-control"></select>
+										<select id="choixDept" name="choixDept" class="form-control" disabled></select>
 									</div>
 								</div>
 							</div>
@@ -49,7 +49,7 @@
 						<div class="input-group">
 							<input type="text" id="rechercheCollab" name="rechercheCollab" class="form-control" placeholder="Rechercher par nom">
 							<span class="input-group-btn">
-								<button type="button" class="btn btn-effect-ripple btn-primary"	style="margin-left: 10px;" onclick='RechercheModule.rechercher()'>Rechercher</button>
+								<button type="button" class="btn btn-effect-ripple btn-primary"	style="margin-left: 10px;" onclick='RechercheModule.rechercher()' disabled="">Rechercher</button>
 							</span>
 						</div>
 					</div>
@@ -57,7 +57,7 @@
 			</div>
 		</div>
 		<div class="container">
-		<div class="row">
+		<div class="row tableau">
 			<div class="col-md-12">
 				<table class="table table-bordered">
 					<thead class="thead-light">
@@ -74,7 +74,7 @@
 				</table>
 			</div>
 		</div>
-		<div class="row">
+		<div class="row tableau">
 			<div class="col-md-12">
 				<div id="updatebox" style="display:none; margin-top:50px;width: 100%" class="mainbox col-md-12">
                     <div class="panel panel-info">
@@ -106,6 +106,11 @@
                                     <label for="ban" class="col-md-3 control-label form-label">BAN</label>
                                     <div class="col-md-9">
                                         <input type="text" class="form-control" name="ban" placeholder="BAN">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-9">
+                                        <input type="hidden" class="form-control" name="matricule">
                                     </div>
                                 </div>
 
