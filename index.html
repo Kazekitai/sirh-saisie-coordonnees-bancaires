@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>SGP - App</title>
+<link rel="stylesheet" href="./bootstrap-3.3.7-dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="./bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+</head>
+<body style="background-color: lightgray;">
+	<div class="header">
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="logo">
+				<a class="navbar-brand" href="home.html"> <img
+					src="https://bootdey.com/img/Content/user_1.jpg" alt="logo"
+					width="50" height="50" class="img-circle">
+				</a>
+			</div>
+			 
+			<div class="container-fluid">
+				<div class="navbar-header">
+					 <a class="navbar-brand" href="#">SGP - App</a>
+				</div>    
+			</div>
+		</nav>
+	</div>
+	<h1 style="margin-left: 20px; text-align: center; margin-top: 90px;">Saisie des coordonnées bancaires</h1>
+	<div class="container bootstrap snippet" style="width: 100%;">
+		<div class="row"
+			style="width: 100%; margin-left: auto; margin-right: auto; width: 100%;">
+			<div class="col-lg-8" style="width: 100%;">
+				<div class="panel panel-default">
+					<div class="panel-body p-t-0" style="background-color: lightgray;">
+						<h2>Rechercher</h2>
+						<div class="row" style="width: 50%; margin-bottom: 20px;">
+							<div class="form-group">
+								<label for="departement"
+									class="col-md-3 control-label form-label">Filtrer par département</label>
+								<div class="col-md-9">
+									<div class="input-group">
+
+										<select id="choixDept" name="choixDept" class="form-control"></select>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="input-group">
+							<input type="text" id="rechercheCollab" name="rechercheCollab" class="form-control" placeholder="Rechercher par nom">
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-effect-ripple btn-primary"	style="margin-left: 10px;" onclick='RechercheModule.rechercher()'>Rechercher</button>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<table class="table table-bordered">
+					<thead class="thead-light">
+						<tr>
+							<th scope="col">Matricule</th>
+							<th scope="col">Nom</th>
+							<th scope="col">Prénom</th>
+							<th scope="col">Modifier</th>
+						</tr>
+					</thead>
+					<tbody id="listecollabs">
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div id="updatebox" style="display:none; margin-top:50px;width: 100%" class="mainbox col-md-12">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <div class="panel-title">Coordonnées bancaires</div>
+                        </div>  
+                        <div class="panel-body" >
+                            <form id="bankform" class="form-horizontal" role="form">
+                                <div id="signupalert" style="display:none" class="alert alert-danger">
+                                    <p>Erreur:</p>
+                                    <span></span>
+                                </div>
+                                    
+                                <div class="form-group">
+                                    <label for="banque" class="col-md-3 control-label form-label">Banque</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="banque" placeholder="nom de la banque">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="bic" class="col-md-3 control-label form-label">BIC</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="bic" placeholder="BIC">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="ban" class="col-md-3 control-label form-label">BAN</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="ban" placeholder="BAN">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <!-- Button -->                                        
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <button id="btn-signup" type="button" onclick='ModifierBanqueModule.modifier()' class="btn btn-info"><i class="icon-hand-right"></i>Sauvegarder</button>
+                                        <span style="margin-left:8px;"></span>  
+                                    </div>
+                                </div>
+                                
+                            </form>
+                         </div>
+                    </div>
+		         </div> 
+			</div>
+		</div>
+			
+	</div>
+	</div>
+	<script src="app.js"></script>
+</body>
+</html>

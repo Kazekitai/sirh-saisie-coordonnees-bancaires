@@ -1,0 +1,56 @@
+.form-container {
+	display: inline-table; 
+	width: 80%;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: dimgrey;
+    border-color: black;
+}
+
+.btn-primary:hover {
+	color: #fff;
+    background-color: black;
+    border-color: dimgrey;
+}
+
+.btn-primary:focus {
+    color: #fff;
+    background-color: black;
+    border-color: dimgrey;
+}
+
+thead {
+	background-color: black;
+	color: white;
+}
+
+.modif-btn {
+	width: 100%;
+	padding: 5%;
+}
+
+.panel-info>.panel-heading {
+    color: white;
+    background-color: black;
+    border-color: white;
+}
+
+.btn-info {
+	    color: #fff;
+    background-color: dimgrey;
+    border-color: black;
+}
+
+.btn-info:hover {
+	color: #fff;
+    background-color: black;
+    border-color: dimgrey;
+}
+
+.btn-info:focus {
+    color: #fff;
+    background-color: black;
+    border-color: dimgrey;
+}
