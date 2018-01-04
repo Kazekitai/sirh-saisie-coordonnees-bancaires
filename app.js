@@ -60,6 +60,34 @@ var CollaborateursModule = (function(){
         });
     }
 
+    self.getCollaborateursFromAPIFilter = function (filter) {
+        console.log( "pass " );
+        var listeCollaborateursHtml ="";
+        var serverUrl = "http://localhost:8080/api/collaborateurs";
+        if(filter && !filter.length) {
+            serverUrl = "http://localhost:8080/api/collaborateurs/"+ filter.nom + "/" + filter.identifiant;
+        }         
+        $.get( serverUrl, function( data ) {
+            console.log( "Data Loaded: ", data );
+            console.log("data size ", data.length);
+            for(var i=0;i<data.length;i++) {
+                listeCollaborateursHtml += "<tr class=\"active\">"
+                    +"<td>" + data[i].matricule + "</td>"
+                    +"<td>" + data[i].nom + "</td>"
+                    +"<td>" + data[i].prenom + "</td>"
+                    +"<td>"+"<a href=\"#\" class=\"btn btn-success tooltips modif-btn\" data-placement=\"top\" data-toggle=\"tooltip\" data-original-title=\"Edit\""
+                    +" data-matricule=\""+ data[i].matricule +"\"  onClick=\"ModifierBanqueModule.getCoordoonneesFromAPI()\">"
+                    +"<i class=\"glyphicon glyphicon-pencil\" data-matricule=\""+ data[i].matricule +"\"></i>"
+                    +"</a></td>"
+                    +"</tr>";
+            }          
+
+            $("#listecollabs").append(listeCollaborateursHtml);
+        }).fail(function() {
+            console.log( "error get" );
+        });
+    }
+
 
     return self;
 })();
@@ -118,19 +146,28 @@ RechercheModule = (function() {
         // Tester s'il n'y a aucun filtre
         console.log($("#choixDept").val());
         console.log($( "input[name=rechercheCollab]" ).val());
-        if ($("#choixDept").val("0") && $("input[name=rechercheCollab]" ).val("") ) {
-            
+        if ($("#choixDept").val() == "0" && $("input[name=rechercheCollab]" ).val() == "" ) {
+            $("#listecollabs").empty();
+            CollaborateursModule.init();
         } else {
-            if(!$("#choixDept").val("0") && $("input[name=rechercheCollab]" ).val("")) {
+            if($("#choixDept").val() != "0"  && $("input[name=rechercheCollab]" ).val() == "" ) {
                 // selectionner le departement dans le select
                 $("#choixDept").attr("selected","selected");
                 // filtrer le departement
+                console.log("filtre par département");
+                var filter = {
+                    nom: "departement",
+                    identifiant: $("#choixDept").val()
+                };
+                $("#listecollabs").empty();
+                CollaborateursModule.getCollaborateursFromAPIFilter(filter);
             } else {
                 // filtrer par le nom
+                var filter = {
+                    nom: "nom",
+                    identifiant: $("input[name=rechercheCollab]" ).val()
+                };
             } 
-            
-                      
-            
             
         }
     };

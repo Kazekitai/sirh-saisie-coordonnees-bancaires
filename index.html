@@ -34,22 +34,22 @@
 				<div class="panel panel-default">
 					<div class="panel-body p-t-0" style="background-color: lightgray;">
 						<h2>Rechercher</h2>
-						<div class="row" style="width: 50%; margin-bottom: 20px;">
+						<div class="row" style="margin-bottom: 20px;">
 							<div class="form-group">
 								<label for="departement"
 									class="col-md-3 control-label form-label">Filtrer par département</label>
 								<div class="col-md-9">
 									<div class="input-group">
 
-										<select id="choixDept" name="choixDept" class="form-control" disabled></select>
+										<select id="choixDept" name="choixDept" class="form-control"></select>
 									</div>
 								</div>
 							</div>
 						</div>
 						<div class="input-group">
-							<input type="text" id="rechercheCollab" name="rechercheCollab" class="form-control" placeholder="Rechercher par nom">
+							<input type="text" id="rechercheCollab" name="rechercheCollab" class="form-control" placeholder="Rechercher par nom" readOnly>
 							<span class="input-group-btn">
-								<button type="button" class="btn btn-effect-ripple btn-primary"	style="margin-left: 10px;" onclick='RechercheModule.rechercher()' disabled="">Rechercher</button>
+								<button type="button" class="btn btn-effect-ripple btn-primary"	style="margin-left: 10px;" onclick='RechercheModule.rechercher()'="">Rechercher</button>
 							</span>
 						</div>
 					</div>
