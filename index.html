@@ -41,13 +41,13 @@
 								<div class="col-md-9">
 									<div class="input-group">
 
-										<select id="choixDept" name="choixDept" class="form-control"></select>
+										<select id="choixDept" name="choixDept" class="form-control" onchange="RechercheModule.filtrer();"></select>
 									</div>
 								</div>
 							</div>
 						</div>
 						<div class="input-group">
-							<input type="text" id="rechercheCollab" name="rechercheCollab" class="form-control" placeholder="Rechercher par nom" readOnly>
+							<input type="text" id="rechercheCollab" name="rechercheCollab" class="form-control" placeholder="Rechercher par nom">
 							<span class="input-group-btn">
 								<button type="button" class="btn btn-effect-ripple btn-primary"	style="margin-left: 10px;" onclick='RechercheModule.rechercher()'="">Rechercher</button>
 							</span>

@@ -48,7 +48,7 @@ var CollaborateursModule = (function(){
                     +"<td>" + data[i].nom + "</td>"
                     +"<td>" + data[i].prenom + "</td>"
                     +"<td>"+"<a href=\"#\" class=\"btn btn-success tooltips modif-btn\" data-placement=\"top\" data-toggle=\"tooltip\" data-original-title=\"Edit\""
-                    +" data-matricule=\""+ data[i].matricule +"\"  onClick=\"ModifierBanqueModule.getCoordoonneesFromAPI()\">"
+                    +"data-departement=\""+ data[i].departement.id +"\" data-matricule=\""+ data[i].matricule +"\"  onClick=\"ModifierBanqueModule.getCoordoonneesFromAPI()\">"
                     +"<i class=\"glyphicon glyphicon-pencil\" data-matricule=\""+ data[i].matricule +"\"></i>"
                     +"</a></td>"
                     +"</tr>";
@@ -76,11 +76,15 @@ var CollaborateursModule = (function(){
                     +"<td>" + data[i].nom + "</td>"
                     +"<td>" + data[i].prenom + "</td>"
                     +"<td>"+"<a href=\"#\" class=\"btn btn-success tooltips modif-btn\" data-placement=\"top\" data-toggle=\"tooltip\" data-original-title=\"Edit\""
-                    +" data-matricule=\""+ data[i].matricule +"\"  onClick=\"ModifierBanqueModule.getCoordoonneesFromAPI()\">"
+                    +"data-departement=\""+ data[i].departement.id +"\"  data-matricule=\""+ data[i].matricule +"\"  onClick=\"ModifierBanqueModule.getCoordoonneesFromAPI()\">"
                     +"<i class=\"glyphicon glyphicon-pencil\" data-matricule=\""+ data[i].matricule +"\"></i>"
                     +"</a></td>"
                     +"</tr>";
-            }          
+                if(filter.nom == "nom") {
+                        $('#choixDept option[value="'+data[i].departement.id+'"]').prop('selected', true)
+                }    
+            }    
+
 
             $("#listecollabs").append(listeCollaborateursHtml);
         }).fail(function() {
@@ -146,29 +150,37 @@ RechercheModule = (function() {
         // Tester s'il n'y a aucun filtre
         console.log($("#choixDept").val());
         console.log($( "input[name=rechercheCollab]" ).val());
-        if ($("#choixDept").val() == "0" && $("input[name=rechercheCollab]" ).val() == "" ) {
+        if ($("input[name=rechercheCollab]" ).val() == "" ) {
+            $("#listecollabs").empty();
+            this.filtrer();
+        } else {
+            // filtrer par le nom
+            var filter = {
+                nom: "nom",
+                identifiant: $("input[name=rechercheCollab]" ).val()
+            };
+             $("#listecollabs").empty();
+            CollaborateursModule.getCollaborateursFromAPIFilter(filter); 
+        }
+    };
+
+    self.filtrer = function() {
+        // Tester s'il n'y a aucun filtre
+        $( "input[name=rechercheCollab]" ).val("");
+        if ($("#choixDept").val() == "0") {
             $("#listecollabs").empty();
             CollaborateursModule.init();
         } else {
-            if($("#choixDept").val() != "0"  && $("input[name=rechercheCollab]" ).val() == "" ) {
-                // selectionner le departement dans le select
-                $("#choixDept").attr("selected","selected");
-                // filtrer le departement
-                console.log("filtre par département");
-                var filter = {
-                    nom: "departement",
-                    identifiant: $("#choixDept").val()
-                };
-                $("#listecollabs").empty();
-                CollaborateursModule.getCollaborateursFromAPIFilter(filter);
-            } else {
-                // filtrer par le nom
-                var filter = {
-                    nom: "nom",
-                    identifiant: $("input[name=rechercheCollab]" ).val()
-                };
-            } 
-            
+            // selectionner le departement dans le select
+            $("#choixDept").attr("selected","selected");
+            // filtrer le departement
+            console.log("filtre par département");
+            var filter = {
+                nom: "departement",
+                identifiant: $("#choixDept").val()
+            };
+            $("#listecollabs").empty();
+            CollaborateursModule.getCollaborateursFromAPIFilter(filter);  
         }
     };
 
