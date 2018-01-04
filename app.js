@@ -72,13 +72,16 @@ ModifierBanqueModule = (function(){
     //methodes publiques
 
     self.modifier =  function() {
+        event.preventDefault();
+        $('#updatebox').hide();
         var matricule = $( "input[name=matricule]").val();
         var collab = {
             banque: $( "input[name=banque]").val(),
-            bic: $( "input[name=bin]").val(),
-            ban: $( "input[name=ban]").val(),
+            bic: $( "input[name=bic]").val(),
+            ban: $( "input[name=ban]").val()
         };
         console.log( "matricule: " +  matricule);
+        console.log(collab);
         $.ajax({ 
             type: 'PUT', 
             url: serverUrl + matricule + "/banque",
@@ -91,12 +94,10 @@ ModifierBanqueModule = (function(){
     self.getCoordoonneesFromAPI = function() {
         event.preventDefault();
         $('#updatebox').show();
-        console.log( "pass " );
         var listeCollaborateursHtml ="";
         var matricule = $(event.target).data("matricule");
         $.get( serverUrl + matricule + "/banque", function( data ) {
             console.log( "Data Loaded: ", data );
-            console.log("data size ", data.length);
             $( "input[name=matricule]").val(matricule);
             $( "input[name=banque]").val(data.banque);
             $( "input[name=bic]").val(data.bic);
