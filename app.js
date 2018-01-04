@@ -49,7 +49,7 @@ var CollaborateursModule = (function(){
                     +"<td>" + data[i].prenom + "</td>"
                     +"<td>"+"<a href=\"#\" class=\"btn btn-success tooltips modif-btn\" data-placement=\"top\" data-toggle=\"tooltip\" data-original-title=\"Edit\""
                     +" data-matricule=\""+ data[i].matricule +"\"  onClick=\"ModifierBanqueModule.getCoordoonneesFromAPI()\">"
-                    +"<i class=\"glyphicon glyphicon-pencil\"></i>"
+                    +"<i class=\"glyphicon glyphicon-pencil\" data-matricule=\""+ data[i].matricule +"\"></i>"
                     +"</a></td>"
                     +"</tr>";
             }          
